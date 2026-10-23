@@ -63,6 +63,7 @@ class Principal extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.blueGrey.shade50,
         appBar: _titulo(),
         body: _listaPontosTuristicos(),
       ),
@@ -99,13 +100,22 @@ class Principal extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8.0),
       padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.blueGrey.shade100),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            ponto['imagem']!,
-            width: 110,
-            height: 90,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.asset(
+              ponto['imagem']!,
+              width: 110,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -115,12 +125,26 @@ class Principal extends StatelessWidget {
                 Text(
                   ponto['nome']!,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(ponto['cidade']!),
                 const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      size: 16,
+                      color: Colors.blueGrey.shade600,
+                    ),
+                    const SizedBox(width: 3),
+                    Text(
+                      ponto['cidade']!,
+                      style: TextStyle(color: Colors.blueGrey.shade600),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
                 Text(ponto['descricao']!),
               ],
             ),
